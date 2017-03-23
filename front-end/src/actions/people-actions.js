@@ -1,3 +1,4 @@
+"use strict"
 import * as types from './action-types';
 
 export const addPerson = (person) => {
