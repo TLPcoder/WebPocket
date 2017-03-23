@@ -3,7 +3,8 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 8000;
 const bodyParser = require('body-parser');
-const API = require('./routers/API')
+const API = require('./routers/API');
+const login = require('./routers/login');
 
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -18,12 +19,14 @@ app.use(function(req, res, next) {
       next();
     }
 });
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 
 app.use('/API', API);
+app.use('/login', login);
 
 app.get('/', function(req,res){
     res.json({
