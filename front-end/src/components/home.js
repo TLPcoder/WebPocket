@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as BookmarkAction from '../actions/bookmark-actions';
 import axios from 'axios';
+import Bookmarks from './bookmarks';
 
 class Home extends Component{
     constructor(props){
@@ -24,8 +25,11 @@ class Home extends Component{
             console.log("url", this.props.store.bookmarks[0][0].url);
             return(
                 <div>
+                    <Bookmarks/>
                     <h1>Home</h1>
-                    <iframe src={this.props.store.bookmarks[0][0].url} frameborder="0" width="800px" height='500px'></iframe>
+                    <iframe src={this.props.store.selectedBookmark.url} frameBorder="0" width="800px" height='500px'></iframe>
+                    <br/>
+                    <a href={this.props.store.selectedBookmark.url}>{this.props.store.selectedBookmark.name}</a>
                 </div>
             )
         }else{

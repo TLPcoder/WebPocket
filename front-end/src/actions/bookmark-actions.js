@@ -7,3 +7,16 @@ export const bookmarks = (data) => {
         data: data
     };
 };
+export const selectBookmark = (bookmark) => {
+    return {
+        type: types.SELECTED_BOOKMARK,
+        bookmark: bookmark
+    };
+};
+
+export const clearBookmarks = () => {
+    return{
+        type: types.CLEAR_BOOKMARKS,
+        payload: []
+    };        
+};
