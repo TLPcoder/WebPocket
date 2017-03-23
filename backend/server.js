@@ -1,7 +1,7 @@
 "use strict";
 const express = require('express');
 const app = express();
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 const bodyParser = require('body-parser');
 const API = require('./routers/API')
 
