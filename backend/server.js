@@ -5,6 +5,7 @@ const PORT = process.env.PORT || 8000;
 const bodyParser = require('body-parser');
 const API = require('./routers/API');
 const login = require('./routers/login');
+const create = require('./routers/create');
 
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -27,6 +28,7 @@ app.use(bodyParser.urlencoded({
 
 app.use('/API', API);
 app.use('/login', login);
+app.use('/create', create);
 
 app.get('/', function(req,res){
     res.json({

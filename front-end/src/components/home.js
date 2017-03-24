@@ -14,7 +14,8 @@ class Home extends Component{
         this.fitchData();
     }
     fitchData(){
-        axios.get(`http://localhost:8000/API/bookmarks/2`)
+        var id = sessionStorage.getItem('id');
+        axios.get(`http://localhost:8000/API/bookmarks/${id}`)
         .then((response) => {
             this.props.actions.bookmarks(response.data);
         });

@@ -50,14 +50,14 @@ exports.seed = function(knex, Promise) {
           {
               category_id: 4,
               bookmark_name:'Giants',
-              url:'https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=5&cad=rja&uact=8&ved=0ahUKEwiH_fWdxuvSAhXqqlQKHRACCo8QFggzMAQ&url=http%3A%2F%2Fsanfrancisco.giants.mlb.com%2F&usg=AFQjCNH9rJ0q1HBxbEbnvokyhislUDojSA&sig2=sF4qMrCR2OF06lIGX1qslA&bvm=bv.150475504,d.cGw',
+              url:'http://sanfrancisco.giants.mlb.com/index.jsp?c_id=sf',
               created_at: new Date('2017-01-29 14:26:16 UTC'),
               updated_at: new Date('2017-01-29 14:26:16 UTC')
           },
           {
               category_id: 4,
               bookmark_name:'Curvball',
-              url:'https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwiu36iuxuvSAhWJllQKHcWgBmcQFggaMAA&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FCurveball&usg=AFQjCNEJOb6cCMzRzSmjhjdN7WoznmYkXA&sig2=6fbKr89Z0OMTrw3gVV9qqA&bvm=bv.150475504,d.cGw',
+              url:'https://en.wikipedia.org/wiki/Curveball',
               created_at: new Date('2017-01-29 14:26:16 UTC'),
               updated_at: new Date('2017-01-29 14:26:16 UTC')
           },
@@ -71,7 +71,7 @@ exports.seed = function(knex, Promise) {
           {
               category_id: 5,
               bookmark_name:'Hedge Fund',
-              url:'https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=5&cad=rja&uact=8&sqi=2&ved=0ahUKEwinpcHLxuvSAhXhsVQKHRNvDk8QFgg0MAQ&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FHedge_fund&usg=AFQjCNHXa-FzEASfi0JXvNMKFIqXI96j9w&sig2=1q9BxSuO9NJr51Sog_-EgA&bvm=bv.150475504,d.cGw',
+              url:'https://en.wikipedia.org/wiki/Hedge_fund',
               created_at: new Date('2017-01-29 14:26:16 UTC'),
               updated_at: new Date('2017-01-29 14:26:16 UTC')
           },
