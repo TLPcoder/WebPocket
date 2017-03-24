@@ -10,23 +10,13 @@ router.get('/', function(req, res) {
     });
 });
 
-router.get('/bookmarks/:id', function(req,res){
+router.get('/category/:id', function(req,res){
     var id = req.params.id;
-    knex('bookmark').returning('*')
-    .innerJoin('category','bookmark.category_id','category.id')
+    knex('category').returning('*')
     .innerJoin('users', 'users.id','category.user_id')
     .where('users.id',id)
     .then(function(data){
-        let bookmarks = {};
-        data.forEach((el) => {
-            if(!bookmarks[el.category_name]){
-                bookmarks[el.category_name] = [];
-            }
-            if(bookmarks[el.category_name]){
-                bookmarks[el.category_name].push(el);
-            }
-        });
-        res.json(bookmarks);
+        res.json(data);
     }).catch(function(err){
         console.log(err);
     });

@@ -13,40 +13,73 @@ class Bookmarks extends Component{
         this.renderBookmarks = this.renderBookmarks.bind(this);
         this.renderCategories = this.renderCategories.bind(this);
         this.createBookmark = this.createBookmark.bind(this);
+        this.createCategory = this.createCategory.bind(this);
+        this.fitchData = this.fitchData.bind(this);
+        this.createDeleteBookmarks = this.createDeleteBookmarks.bind(this);
+        this.fitchData();
+    }
+    fitchData(){
+        var user_id = sessionStorage.getItem('id');
+        axios.get(`http://localhost:8000/API/category/${user_id}`)
+        .then((response) => {
+            this.props.actions.updateCategory(response.data);
+        });
     }
     renderCategories(){
-        console.log(this.props)
         var key = 0;
-        if(this.props.store.category.length){
-            this.props.actions.clearBookmarks();
-        }
-        return this.props.store.bookmarks.map((el) => {
+        return this.props.store.category.map((el) => {
             key++;
             return (<input key={key} type="button" onClick={()=>{
-                this.renderBookmarks(el)
-            }} value={el[0].category_name}/>)
+                this.renderBookmarks(el.category_id)
+            }} value={el.category_name}/>)
         });
     }
-    renderBookmarks(arr){
-        console.log(arr)
+    renderBookmarks(categoryId = this.props.store.currentCategory){
         var key = 0;
-        var bookmarks = arr.map((el) => {
-            key++;
-            return (<input key={key} type="button" id ={el.category_id} onClick={()=>{
-                var obj = {
-                    name:el.bookmark_name,
-                    url:el.url
-                }
-                this.props.actions.selectBookmark(obj)
-            }} value={el.bookmark_name}/>)
+        axios.get(`http://localhost:8000/API/bookmarks/category/${categoryId}`)
+        .then((response) => {
+            console.log("hello there data", response.data)
+            var bookmarks = response.data.map((el) => {
+                key++;
+                return (<input key={key} type="button" id ={el.category_id} onClick={()=>{
+                    var obj = {
+                        name:el.bookmark_name,
+                        url:el.url
+                    }
+                    this.props.actions.selectBookmark(obj)
+                }} value={el.bookmark_name}/>)
+            });
+            this.props.actions.bookmarks(bookmarks);
+            this.props.actions.currentCategory(categoryId);
+            this.props.actions.clearCategory(bookmarks);
         });
-
-        this.props.actions.changeCategory(bookmarks)
+    }
+    createDeleteBookmarks(categoryId = this.props.store.currentCategory){
+        var key = 0;
+        axios.get(`http://localhost:8000/API/bookmarks/category/${categoryId}`)
+        .then((response) => {
+            console.log("hello there data", response.data)
+            var bookmarks = response.data.map((el) => {
+                key++;
+                return (<input key={key} type="button" id ={el.category_id} onClick={()=>{
+                    axios.put(`http://localhost:8000/delete/bookmark`,{
+                        bookmark_id:el.bookmark_id
+                    }).then((response)=>{
+                        console.log(response.data);
+                        this.createDeleteBookmarks();
+                    })
+                }} value={el.bookmark_name}/>)
+            });
+            this.props.actions.bookmarks(bookmarks);
+            this.props.actions.currentCategory(categoryId);
+            this.props.actions.clearCategory(bookmarks);
+        });
     }
     createBookmark(){
+        console.log("fuck");
         var bookmark_name = document.getElementById('bookmarkName').value;
         var url = document.getElementById('bookmarkURL').value;
-        var category_id = this.props.store.category[0].props.id;
+        var category_id = this.props.store.currentCategory;
         axios.post(`http://localhost:8000/create/bookmark`,{
             bookmark_name: bookmark_name,
             url: url,
@@ -57,20 +90,72 @@ class Bookmarks extends Component{
             axios.get(`http://localhost:8000/API/bookmarks/category/${category_id}`)
             .then((response) => {
                 console.log(response.data)
-                this.renderBookmarks(response.data);
+                this.renderBookmarks(this.props.store.currentCategory)
             });
-        this.renderBookmarks()
         })
         .catch((error)=> {
+            console.log(error);
+        });
+    }
+    createCategory(){
+        var category_name = document.getElementById('addCategory').value;
+        var user_id = sessionStorage.getItem('id');
+
+        axios.post(`http://localhost:8000/create/category`,{
+            category_name: category_name,
+            user_id: user_id,
+        })
+        .then((response)=>{
+            this.props.actions.addCategory(false);
+            axios.get(`http://localhost:8000/API/category/${user_id}`)
+            .then((response) => {
+                this.props.actions.updateCategory(response.data);
+                this.renderCategories();
+            });
+        })
+        .catch((error)=>{
             console.log(error);
         });
 
     }
     render(){
-        console.log(this.props)
-        if(!this.props.store.category.length){
+        console.log("PROPS", this.props)
+        if(this.props.store.category.length && !this.props.store.addCategory){
             return(
-                <div>{this.renderCategories()}</div>
+                <div>
+                    <input type="button" value="Add Category" onClick={() => {
+                        console.log("hello");
+                        this.props.actions.addCategory(true);
+                    }}/>
+                    <div>{this.renderCategories()}</div>
+                </div>
+            )
+        }else if(this.props.store.deleteBookmark){
+            return(
+                <div>
+                    <div>
+                        <input type="button" value="Back" onClick={()=>{
+                                this.renderBookmarks()
+                                this.props.actions.deleteBookmark(false);
+                            }
+                        }/>
+                        <div>{this.props.store.bookmarks}</div>
+                    </div>
+                </div>
+            )
+        }else if(this.props.store.addCategory){
+            return(
+                <div>
+                    <div>
+                        <label htmlFor="">New Category</label>
+                        <input type="text" id="addCategory"/>
+                        <input type="button" value="Create Category" onClick={this.createCategory}/>
+                    </div>
+                    <div>
+                        <input type="button" value="Add Category"/>
+                        <div>{this.renderCategories()}</div>
+                    </div>
+                </div>
             )
         }else if(this.props.store.addBookmark){
             return(
@@ -92,9 +177,17 @@ class Bookmarks extends Component{
         }else{
             return(
                 <div>
-                    <input type="button" value="Categories" onClick={this.renderCategories}/>
+                    <input type="button" value="Categories" onClick={()=>{
+                            this.props.actions.clearBookmarks();
+                            this.props.actions.currentCategory(false);
+                            this.fitchData();
+                        }}/>
                     <input type="button" value="Add Bookmark" onClick={()=>this.props.actions.addBookmark(true)}/>
-                    <div>{this.props.store.category}</div>
+                    <input type="button" value="Delete Bookmark" onClick={()=>{
+                            this.props.actions.deleteBookmark(true);
+                            this.createDeleteBookmarks();
+                        }}/>
+                    <div>{this.props.store.bookmarks}</div>
                 </div>
             )
         }

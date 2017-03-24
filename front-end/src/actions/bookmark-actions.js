@@ -4,7 +4,7 @@ import axios from 'axios';
 export const bookmarks = (data) => {
     return {
         type: types.BOOKMARK_DATA,
-        data: data
+        payload: data
     };
 };
 export const selectBookmark = (bookmark) => {
@@ -24,6 +24,12 @@ export const clearBookmarks = () => {
 export const addBookmark = (bool) => {
     return{
         type: types.ADD_BOOKMARK,
+        payload: bool
+    };
+};
+export const deleteBookmark = (bool) => {
+    return{
+        type: types.DELETE_BOOKMARK,
         payload: bool
     };
 };
