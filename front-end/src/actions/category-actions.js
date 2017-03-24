@@ -22,6 +22,13 @@ export const addCategory = (bool) =>{
     };
 };
 
+export const deleteCategory = (bool) =>{
+    return{
+        type: types.DELETE_CATEGORY,
+        payload:bool
+    };
+};
+
 export const currentCategory = (id) =>{
     return{
         type: types.CURRENT_CATEGORY,

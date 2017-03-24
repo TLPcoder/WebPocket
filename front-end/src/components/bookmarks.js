@@ -16,6 +16,7 @@ class Bookmarks extends Component{
         this.createCategory = this.createCategory.bind(this);
         this.fitchData = this.fitchData.bind(this);
         this.createDeleteBookmarks = this.createDeleteBookmarks.bind(this);
+        this.createDeleteCategories = this.createDeleteCategories.bind(this);
         this.fitchData();
     }
     fitchData(){
@@ -23,6 +24,21 @@ class Bookmarks extends Component{
         axios.get(`http://localhost:8000/API/category/${user_id}`)
         .then((response) => {
             this.props.actions.updateCategory(response.data);
+        });
+    }
+    createDeleteCategories(){
+        var key = 0;
+        return this.props.store.category.map((el) => {
+            key++;
+            return (<input key={key} type="button" onClick={()=>{
+                axios.put(`http://localhost:8000/delete/category`,{
+                    category_id:el.category_id
+                }).then((response)=>{
+                    console.log(response.data);
+                    this.fitchData();
+                    this.createDeleteCategories();
+                })
+            }}  value={el.category_name}/>)
         });
     }
     renderCategories(){
@@ -120,17 +136,35 @@ class Bookmarks extends Component{
     }
     render(){
         console.log("PROPS", this.props)
-        if(this.props.store.category.length && !this.props.store.addCategory){
+        if(this.props.store.category.length && !this.props.store.addCategory && !this.props.store.deleteCategory){
             return(
                 <div>
                     <input type="button" value="Add Category" onClick={() => {
                         console.log("hello");
                         this.props.actions.addCategory(true);
                     }}/>
+                <input type="button" value="Delete Category" onClick={() => {
+                        console.log("hello");
+                        this.props.actions.deleteCategory(true);
+                    }}/>
                     <div>{this.renderCategories()}</div>
                 </div>
             )
-        }else if(this.props.store.deleteBookmark){
+        }else if(this.props.store.deleteCategory){
+            return(
+                <div>
+                    <div>
+                        <input type="button" value="Back" onClick={()=>{
+                                this.renderCategories()
+                                this.props.actions.deleteCategory(false)
+                            }
+                        }/>
+                        <div>{this.createDeleteCategories()}</div>
+                    </div>
+                </div>
+            )
+        }
+        else if(this.props.store.deleteBookmark){
             return(
                 <div>
                     <div>

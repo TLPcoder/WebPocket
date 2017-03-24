@@ -15,9 +15,16 @@ router.put('/bookmark', function(req,res){//delete route doesnt work trying to f
 router.put('/category', function(req,res){//delete route doesnt work trying to findout why
     console.log(req.body)
     knex('category')
-    .where('category_id', req.body.bookmark_id)
+    .where('category_id', req.body.category_id)
     .del()
     .then((data)=>{
+        console.log(data);
+        knex('bookmark').where('category_id', req.body.category_id)
+        .then((bookmarkData) =>{
+            bookmarkData.forEach((el)=>{
+                knex('bookmark').where('bookmark_id', el.bookmark_id).del();
+            });
+        });
         res.json(data);
     });
 });
