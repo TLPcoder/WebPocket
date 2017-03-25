@@ -10,10 +10,11 @@ import deleteBookmark from './delete-bookmark-reducer.js';
 import addCategory from './add-category-reducer.js';
 import currentCategory from './current-category-reducer.js';
 import deleteCategory from './delete-category-reducer.js';
+import noCategories from './no-categories-reducer.js';
 import {combineReducers} from 'redux';
 
 const rootReducer = combineReducers({
-  people, login, page, bookmarks, selectedBookmark, category, addBookmark, addCategory,currentCategory,deleteBookmark,deleteCategory
+  people, login, page, bookmarks, selectedBookmark, category, addBookmark, addCategory,currentCategory,deleteBookmark,deleteCategory,noCategories
 });
 
 export default rootReducer;

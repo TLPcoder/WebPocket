@@ -24,6 +24,9 @@ class Bookmarks extends Component{
         axios.get(`http://localhost:8000/API/category/${user_id}`)
         .then((response) => {
             this.props.actions.updateCategory(response.data);
+            if(response.data.length === 0){
+                this.props.actions.noCategories(true);
+            }
         });
     }
     createDeleteCategories(){
@@ -126,6 +129,7 @@ class Bookmarks extends Component{
             axios.get(`http://localhost:8000/API/category/${user_id}`)
             .then((response) => {
                 this.props.actions.updateCategory(response.data);
+                this.props.actions.noCategories(false);
                 this.renderCategories();
             });
         })
@@ -206,6 +210,14 @@ class Bookmarks extends Component{
                         <input type="button" value="Add Bookmark"/>
                         <div>{this.props.store.category}</div>
                     </div>
+                </div>
+            )
+        }else if(this.props.store.noCategories){
+            return(
+                <div>
+                    <label htmlFor="">New Category</label>
+                    <input type="text" id="addCategory"/>
+                    <input type="button" value="Create Category" onClick={this.createCategory}/>
                 </div>
             )
         }else{

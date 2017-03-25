@@ -35,3 +35,9 @@ export const currentCategory = (id) =>{
         payload:id
     };
 };
+export const noCategories = (bool) =>{
+    return{
+        type: types.NO_CATEGORIES,
+        payload:bool
+    };
+};
