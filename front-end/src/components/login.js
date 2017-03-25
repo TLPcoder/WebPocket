@@ -20,6 +20,8 @@ class Login extends Component{
             return promise.json();
         }).then((data) => {
             if(data.length){
+                console.log('data', data);
+                sessionStorage.setItem('id', data[0].id);
                 this.props.actions.login(true);
                 this.login();
             }else{

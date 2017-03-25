@@ -1,9 +1,10 @@
-"use strict";
+'use strict';
 import * as types from '../actions/action-types';
-export default (state = 'login', action) => {
+
+export default (state = false, action) => {
     switch(action.type){
-        case types.CHAGNE_PAGE:
-            return action.page;
+        case types.ADD_CATEGORY:
+            return action.payload;
         default:
             return state;
     }
