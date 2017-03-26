@@ -8,8 +8,8 @@ export default class Navbar extends Component {
     }
     render() {
         return (
-            <div>
-                {this.props.children}
+            <div id = "navbar">
+                <h1>WeB-PoCkEt</h1>
             </div>
         );
     }

@@ -24,7 +24,8 @@
 }
 .home-container{
     margin:auto;
-    margin-top: 100px;
+    position: relative;
+    top:-22px;
 }
 .buttons-container{
     float:left;
@@ -130,8 +131,6 @@
     width:400px;
     background-color: white;
     position:absolute;
-    /*top:200px;
-    left:700px;*/
     border:solid grey 2px;
     border-radius: 5px;
     background-color: #F0F0F0;
@@ -156,4 +155,74 @@
 }
 .create-category-button {
     width:36%;
+}
+
+#window{
+    overflow-y: auto;
+    overflow-x: hidden;
+    height:auto;
+    max-height:500px;
+    padding-bottom: 20px;
+}
+#window::-webkit-scrollbar {
+    display: none;
+}
+#main-window{
+    background-color: #F9F9FA;
+    border:solid 2px #B4B7C0;
+    padding-right:2px;
+    border-radius: 5px;
+}
+
+.iframe{
+    border:solid 2px #B4B7C0;
+    border-radius: 5px;
+    background-color: white;
+}
+
+/*#iframe-container{
+    text-align: left;
+    text-decoration: none;
+    color: white;
+    padding: 8px 15px;
+    background-color: pink;
+    position: relative;
+    left:230px;
+    top:30px;
+    font-size: 25px;
+    background-color: #CB3837;
+    border: solid 1px #CB3837;
+    -webkit-transition-duration: .5s; /* Safari
+    transition-duration: .5s;
+}
+
+#iframe-container:hover{
+    background-color: white;
+    color: #CB3837;
+    border: solid 1px #CB3837;
+}*/
+
+#navbar{
+    background-color: #1893C2;
+    color:white;
+    height:80px;
+    width: 100%;
+    margin-bottom:100px;
+}
+#navbar h1{
+    position: relative;
+    top:20px;
+}
+
+.background{
+    width:100%;
+    z-index: -5;
+    height:100vh;
+    position: fixed;
+
+    background: url("https://source.unsplash.com/random") no-repeat center center fixed;
+    background-size:cover;
+    background-position:center center;
+    background-attachment:fixed;
+    color:white;
 }

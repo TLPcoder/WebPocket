@@ -142,7 +142,7 @@ class Bookmarks extends Component{
         console.log("PROPS", this.props)
         if(this.props.store.category.length && !this.props.store.addCategory && !this.props.store.deleteCategory){
             return(
-                <div>
+                <div id="main-window">
                     <input type="button" value="Add Category" className='button-control' onClick={() => {
                         console.log("hello");
                         this.props.actions.addCategory(true);
@@ -151,19 +151,19 @@ class Bookmarks extends Component{
                         console.log("hello");
                         this.props.actions.deleteCategory(true);
                     }}/>
-                    <div>{this.renderCategories()}</div>
+                <div id='window'>{this.renderCategories()}</div>
                 </div>
             )
         }else if(this.props.store.deleteCategory){
             return(
-                <div>
+                <div id="main-window">
                     <div>
                         <input type="button" value="Back" className='button-back' onClick={()=>{
                                 this.renderCategories()
                                 this.props.actions.deleteCategory(false)
                             }
                         }/>
-                        <div>{this.createDeleteCategories()}</div>
+                    <div id='window'>{this.createDeleteCategories()}</div>
                     </div>
                 </div>
             )
@@ -171,13 +171,13 @@ class Bookmarks extends Component{
         else if(this.props.store.deleteBookmark){
             return(
                 <div>
-                    <div>
+                    <div id="main-window">
                         <input type="button" value="Back" className='button-back' onClick={()=>{
                                 this.renderBookmarks()
                                 this.props.actions.deleteBookmark(false);
                             }
                         }/>
-                        <div>{this.props.store.bookmarks}</div>
+                    <div id='window'>{this.props.store.bookmarks}</div>
                     </div>
                 </div>
             )
@@ -210,7 +210,7 @@ class Bookmarks extends Component{
             )
         }else if(this.props.store.noCategories){
             return(
-                <div>
+                <div id="main-window">
                     <label htmlFor="">New Category</label>
                     <input type="text" id="add-category-text" className="add-category-text"/>
                     <input type="button" className='button-add' value="Create Category" onClick={this.createCategory}/>
@@ -218,18 +218,18 @@ class Bookmarks extends Component{
             )
         }else{
             return(
-                <div>
-                    <input type="button" className='button-control' value="Categories" onClick={()=>{
-                            this.props.actions.clearBookmarks();
-                            this.props.actions.currentCategory(false);
-                            this.fitchData();
-                        }}/>
+                <div id="main-window">
                     <input type="button" className='button-control' value="Add Bookmark" onClick={()=>this.props.actions.addBookmark(true)}/>
                     <input type="button" className='button-control-delete' value="Delete Bookmark" onClick={()=>{
                             this.props.actions.deleteBookmark(true);
                             this.createDeleteBookmarks();
                         }}/>
-                    <div>{this.props.store.bookmarks}</div>
+                    <input type="button" className='button-control' value="Categories" onClick={()=>{
+                            this.props.actions.clearBookmarks();
+                            this.props.actions.currentCategory(false);
+                            this.fitchData();
+                        }}/>
+                    <div id = "window">{this.props.store.bookmarks}</div>
                 </div>
             )
         }
