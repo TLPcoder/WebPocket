@@ -22,3 +22,138 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+.home-container{
+    margin:auto;
+    margin-top: 100px;
+}
+.buttons-container{
+    float:left;
+    margin-left: 50px;
+    width:410px;
+}
+.iframe{
+    margin:auto;
+}
+
+.button{
+    background-color: #1893C2;
+    border: solid 1px #1893C2;
+    color: white;
+    width:276px;
+    padding: 10px 14px;
+    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    margin-left:2px;
+    -webkit-transition-duration: .5s; /* Safari */
+    transition-duration: .5s;
+}
+.button:hover{
+    background-color: white;
+    color: #1893C2;
+    border: solid 1px #1893C2;
+}
+.button-control, .create-category-button, .add-bookmark-button{
+    background-color: #4CAF50;
+    border: solid 1px #4CAF50;
+    margin:2px;
+    color: white;
+    padding: 10px 14px;
+    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    -webkit-transition-duration: .5s; /* Safari */
+    transition-duration: .5s;
+}
+.button-control:hover, .create-category-button:hover, .add-bookmark-button:hover{
+    background-color: white;
+    color: #4CAF50;
+    border: solid 1px #4CAF50;
+}
+.button-delete{
+    background-color: #CB3837;
+    border: solid 1px #CB3837;
+    color: white;
+    width:276px;
+    padding: 10px 14px;
+    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    margin-left:2px;
+    -webkit-transition-duration: .5s; /* Safari */
+    transition-duration: .5s;
+}
+
+.button-delete:hover{
+    background-color: white;
+    color: #CB3837;
+    border: solid 1px #CB3837;
+}
+.button-control-delete, .button-back{
+    background-color: #CB3837;
+    border: solid 1px #CB3837;
+    color: white;
+    padding: 10px 14px;
+    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    -webkit-transition-duration: .5s; /* Safari */
+    transition-duration: .5s;
+}
+.button-control-delete:hover, .button-back:hover{
+    background-color: white;
+    color: #CB3837;
+    border: solid 1px #CB3837;
+}
+
+@keyframes dropHeader {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+#add-category, #add-bookmark{
+    animation: 1s ease-out 0s 1 dropHeader;
+    margin:auto;
+    height:200px;
+    width:400px;
+    background-color: white;
+    position:absolute;
+    /*top:200px;
+    left:700px;*/
+    border:solid grey 2px;
+    border-radius: 5px;
+    background-color: #F0F0F0;
+}
+#add-bookmark{
+    height:250px;
+}
+
+#add-category-text, .add-bookmark-text{
+    height:30px;
+    text-align: center;
+    width:270px;
+    font-size: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.add-bookmark-text{
+    margin-bottom: 20px;
+}
+.button-back{
+    width:32%;
+}
+.create-category-button {
+    width:36%;
+}

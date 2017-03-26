@@ -2,7 +2,7 @@
 import * as types from '../actions/action-types';
 
 export default (state = {
-    url:'http://goldwallpapers.com/uploads/posts/narnia-lion-wallpaper/narnia_lion_wallpaper_019.jpg',
+    url:'http://www.seaviewinfo.com/Backgrounds/thumbs/RiverRock.jpg',
     name:''
     }, action) => {
     switch(action.type){

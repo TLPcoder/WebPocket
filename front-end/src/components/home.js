@@ -14,16 +14,21 @@ class Home extends Component{
     }
     render(){
         return(
-            <div>
-                <Bookmarks/>
-                <h1>Home</h1>
-                <iframe src={this.props.store.selectedBookmark.url} frameBorder="0" width="800px" height='500px'></iframe>
-                <br/>
-                <a href={this.props.store.selectedBookmark.url}>{this.props.store.selectedBookmark.name}</a>
+            <div className = "home-container">
+                <div className = "buttons-container">
+                    <Bookmarks/>
+                </div>
+                <div className = "iframe">
+                    <iframe src={this.props.store.selectedBookmark.url} frameBorder="0" width="900px" height='600px'>SORRY THIS PAGE DOES NOT ALLOW iFRAMES</iframe>
+                    <br/>
+                    <a href={this.props.store.selectedBookmark.url}>{this.props.store.selectedBookmark.name}</a>
+                </div>
             </div>
         )
     }
 }
+// <a href="{BookingLink}&if=1&ifwidth=720" onClick={window.open(this.props.store.selectedBookmark.url, 'mywin',
+// 'toolbar=0,menubar=0,scrollbars=1,height=600,width=720')}>Book online</a>
 
 function mapStateToProps(store){
     return {store}

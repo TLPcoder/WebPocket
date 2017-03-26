@@ -33,7 +33,7 @@ class Bookmarks extends Component{
         var key = 0;
         return this.props.store.category.map((el) => {
             key++;
-            return (<input key={key} type="button" onClick={()=>{
+            return (<input key={key} type="button" className='button-delete' onClick={()=>{
                 axios.put(`http://localhost:8000/delete/category`,{
                     category_id:el.category_id
                 }).then((response)=>{
@@ -48,7 +48,7 @@ class Bookmarks extends Component{
         var key = 0;
         return this.props.store.category.map((el) => {
             key++;
-            return (<input key={key} type="button" onClick={()=>{
+            return (<input key={key} type="button" className='button' onClick={()=>{
                 this.renderBookmarks(el.category_id)
             }} value={el.category_name}/>)
         });
@@ -60,7 +60,7 @@ class Bookmarks extends Component{
             console.log("hello there data", response.data)
             var bookmarks = response.data.map((el) => {
                 key++;
-                return (<input key={key} type="button" id ={el.category_id} onClick={()=>{
+                return (<input key={key} type="button" className='button' id ={el.category_id} onClick={()=>{
                     var obj = {
                         name:el.bookmark_name,
                         url:el.url
@@ -80,7 +80,7 @@ class Bookmarks extends Component{
             console.log("hello there data", response.data)
             var bookmarks = response.data.map((el) => {
                 key++;
-                return (<input key={key} type="button" id ={el.category_id} onClick={()=>{
+                return (<input key={key} type="button" className='button-delete' id ={el.category_id} onClick={()=>{
                     axios.put(`http://localhost:8000/delete/bookmark`,{
                         bookmark_id:el.bookmark_id
                     }).then((response)=>{
@@ -117,9 +117,9 @@ class Bookmarks extends Component{
         });
     }
     createCategory(){
-        var category_name = document.getElementById('addCategory').value;
+        var category_name = document.getElementById('add-category-text').value;
         var user_id = sessionStorage.getItem('id');
-
+        console.log('safjasldkjf', category_name);
         axios.post(`http://localhost:8000/create/category`,{
             category_name: category_name,
             user_id: user_id,
@@ -143,11 +143,11 @@ class Bookmarks extends Component{
         if(this.props.store.category.length && !this.props.store.addCategory && !this.props.store.deleteCategory){
             return(
                 <div>
-                    <input type="button" value="Add Category" onClick={() => {
+                    <input type="button" value="Add Category" className='button-control' onClick={() => {
                         console.log("hello");
                         this.props.actions.addCategory(true);
                     }}/>
-                <input type="button" value="Delete Category" onClick={() => {
+                <input type="button" value="Delete Category" className='button-control-delete' onClick={() => {
                         console.log("hello");
                         this.props.actions.deleteCategory(true);
                     }}/>
@@ -158,7 +158,7 @@ class Bookmarks extends Component{
             return(
                 <div>
                     <div>
-                        <input type="button" value="Back" onClick={()=>{
+                        <input type="button" value="Back" className='button-back' onClick={()=>{
                                 this.renderCategories()
                                 this.props.actions.deleteCategory(false)
                             }
@@ -172,7 +172,7 @@ class Bookmarks extends Component{
             return(
                 <div>
                     <div>
-                        <input type="button" value="Back" onClick={()=>{
+                        <input type="button" value="Back" className='button-back' onClick={()=>{
                                 this.renderBookmarks()
                                 this.props.actions.deleteBookmark(false);
                             }
@@ -184,31 +184,27 @@ class Bookmarks extends Component{
         }else if(this.props.store.addCategory){
             return(
                 <div>
-                    <div>
-                        <label htmlFor="">New Category</label>
-                        <input type="text" id="addCategory"/>
-                        <input type="button" value="Create Category" onClick={this.createCategory}/>
-                    </div>
-                    <div>
-                        <input type="button" value="Add Category"/>
-                        <div>{this.renderCategories()}</div>
+                    <div id='add-category'>
+                        <input type="text" placeholder="Add Category" id="add-category-text"/>
+                        <input type="button" className='create-category-button' value="Create Category" onClick={this.createCategory}/>
+                        <input type="button" value="Back" className='button-back' onClick={()=>{
+                            this.props.actions.addCategory(false);
+                            }
+                        }/>
                     </div>
                 </div>
             )
         }else if(this.props.store.addBookmark){
             return(
                 <div>
-                    <div id='addBookmark'>
-                        <label htmlFor="">Name</label>
-                        <input id='bookmarkName' type="text"/>
-                        <label htmlFor="">URL</label>
-                        <input type="text" id="bookmarkURL"/>
-                        <input type="button" value="Create Bookmark" onClick={this.createBookmark}/>
-                    </div>
-                    <div>
-                        <input type="button" value="Categories" onClick={this.renderCategories}/>
-                        <input type="button" value="Add Bookmark"/>
-                        <div>{this.props.store.category}</div>
+                    <div id='add-bookmark'>
+                        <input id='bookmarkName' className = "add-bookmark-text" placeholder='Bookmark Name' type="text"/>
+                        <input type="text" id="bookmarkURL" placeholder='Bookmark URL'className = "add-bookmark-text"/>
+                        <input type="button" className='add-bookmark-button' value="Create Bookmark" onClick={this.createBookmark}/>
+                        <input type="button" value="Back" className='button-back' onClick={()=>{
+                            this.props.actions.addBookmark(false);
+                            }
+                        }/>
                     </div>
                 </div>
             )
@@ -216,20 +212,20 @@ class Bookmarks extends Component{
             return(
                 <div>
                     <label htmlFor="">New Category</label>
-                    <input type="text" id="addCategory"/>
-                    <input type="button" value="Create Category" onClick={this.createCategory}/>
+                    <input type="text" id="add-category-text" className="add-category-text"/>
+                    <input type="button" className='button-add' value="Create Category" onClick={this.createCategory}/>
                 </div>
             )
         }else{
             return(
                 <div>
-                    <input type="button" value="Categories" onClick={()=>{
+                    <input type="button" className='button-control' value="Categories" onClick={()=>{
                             this.props.actions.clearBookmarks();
                             this.props.actions.currentCategory(false);
                             this.fitchData();
                         }}/>
-                    <input type="button" value="Add Bookmark" onClick={()=>this.props.actions.addBookmark(true)}/>
-                    <input type="button" value="Delete Bookmark" onClick={()=>{
+                    <input type="button" className='button-control' value="Add Bookmark" onClick={()=>this.props.actions.addBookmark(true)}/>
+                    <input type="button" className='button-control-delete' value="Delete Bookmark" onClick={()=>{
                             this.props.actions.deleteBookmark(true);
                             this.createDeleteBookmarks();
                         }}/>
