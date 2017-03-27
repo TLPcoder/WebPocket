@@ -2,7 +2,7 @@
 import * as types from '../actions/action-types';
 
 export default (state = {
-    url:'http://www.seaviewinfo.com/Backgrounds/thumbs/RiverRock.jpg',
+    url:'https://source.unsplash.com/random',
     name:''
     }, action) => {
     switch(action.type){

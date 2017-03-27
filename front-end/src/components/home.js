@@ -14,7 +14,7 @@ class Home extends Component{
         super(props);
     }
     render(){
-        if(this.props.store.selectedBookmark.url === 'http://www.seaviewinfo.com/Backgrounds/thumbs/RiverRock.jpg' || this.props.store.selectedBookmark.url === ''){
+        if(this.props.store.selectedBookmark.url === 'https://source.unsplash.com/random' || this.props.store.selectedBookmark.url === ''){
             return(
                 <div>
                     <div className = 'background'></div>
