@@ -1,47 +1,49 @@
 "use strict";
 import React, {PropTypes, Component} from 'react';
 import {connect} from 'react-redux';
+import axios from 'axios';
 import {bindActionCreators} from 'redux';
 import * as loginActions from '../actions/login-actions';
 import * as pageAction from '../actions/page-action';
-
+import Navbar from './navbar';
 
 class Login extends Component{
     constructor(){
         super()
-        this.login = this.login.bind(this);
         this.checkLogin = this.checkLogin.bind(this);
     }
     checkLogin(){
         var userName = document.getElementById('userName').value;
         var password = document.getElementById('password').value;
-        fetch(`http://localhost:8000/login/${userName}`)
-        .then((promise)=>{
-            return promise.json();
-        }).then((data) => {
-            if(data.length){
-                console.log('data', data);
-                sessionStorage.setItem('id', data[0].id);
+        axios.post(`http://localhost:8000/login/`,{
+            user_name:userName,
+            hashed_password:password
+        })
+        .then((response)=>{
+            if(response.data.length){
+                console.log('data', response.data);
+                sessionStorage.setItem('id', response.data[0].id);
                 this.props.actions.login(true);
-                this.login();
+                this.props.actions.page('home');
             }else{
                 alert('wrong username or password');
             }
         });
     }
-    login(){
-        if(this.props.store.login){
-            this.props.actions.page('home');
-        }
-    }
     render() {
         console.log("props", this.props)
         return (
             <div>
-            <h1>LOGIN</h1>
-            <input id = "userName" type="text"/>
-            <input id = "password" type="text"/>
-            <button onClick={this.checkLogin}>Login</button>
+                <div className = 'background'></div>
+                <Navbar/>
+                <div id='login-window'>
+                    <br/>
+                    <input className = 'login-text' id = "userName" type="text" placeholder='User Name'/>
+                    <br/>
+                    <input className = 'login-text' id = "password" type="password" placeholder='Password'/>
+                    <br/>
+                    <button className='login-button' onClick={this.checkLogin}>Login</button>
+                </div>
             </div>
         );
     }

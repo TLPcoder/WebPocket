@@ -6,6 +6,7 @@ import './App.css';
 import Login from "./components/login";
 import Home from "./components/home";
 import PeopleContainer from './components/PeopleContainer';
+import CreateAccount from './components/create-account'
 
 class App extends Component {
     constructor(){
@@ -27,6 +28,13 @@ class App extends Component {
                     <Home/>
                 </div>
             );
+        }
+        if(this.props.store.page === 'create-account'){
+            return (
+                <div>
+                    <CreateAccount/>
+                </div>
+            )
         }
     }
 }

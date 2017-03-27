@@ -29,4 +29,19 @@ router.post('/bookmark', function(req,res){
     });
 });
 
+router.post('/user', function(req,res){
+    var body = req.body;
+    console.log(body);
+    knex('users').returning('*').insert({
+        first_name:body.first_name,
+        last_name:body.last_name,
+        username:body.username,
+        email:body.email,
+        hashed_password:body.hashed_password
+    }).then((data) =>{
+        console.log(data);
+        res.json(data);
+    });
+});
+
 module.exports = router;
