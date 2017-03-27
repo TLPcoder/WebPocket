@@ -22,15 +22,25 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-.home-container{
+/*.home-container{
     margin:auto;
     position: relative;
     top:-22px;
-}
+}*/
 .buttons-container{
-    float:left;
     margin-left: 50px;
     width:410px;
+}
+@media only screen and (max-device-width: 1400px) {
+    .buttons-container {
+        margin: auto;
+        margin-bottom: 30px;
+    }
+}
+@media only screen and (min-device-width: 1400px) {
+    .buttons-container {
+        float:left;
+    }
 }
 .iframe{
     margin:auto;
@@ -56,7 +66,7 @@
     color: #1893C2;
     border: solid 1px #1893C2;
 }
-.button-control, .create-category-button, .add-bookmark-button{
+.button-control, .create-category-button, .add-bookmark-button, .login-button,.button-add{
     background-color: #4CAF50;
     border: solid 1px #4CAF50;
     margin:2px;
@@ -70,10 +80,13 @@
     -webkit-transition-duration: .5s; /* Safari */
     transition-duration: .5s;
 }
-.button-control:hover, .create-category-button:hover, .add-bookmark-button:hover{
+.button-control:hover, .create-category-button:hover, .add-bookmark-button:hover, .login-button:hover,.button-add:hover{
     background-color: white;
     color: #4CAF50;
     border: solid 1px #4CAF50;
+}
+.login-button{
+    margin-top: 0px;
 }
 .button-delete{
     background-color: #CB3837;
@@ -127,7 +140,7 @@
 #add-category, #add-bookmark{
     animation: 1s ease-out 0s 1 dropHeader;
     margin:auto;
-    height:200px;
+    height:130px;
     width:400px;
     background-color: white;
     position:absolute;
@@ -136,7 +149,7 @@
     background-color: #F0F0F0;
 }
 #add-bookmark{
-    height:250px;
+    height:200px;
 }
 
 #add-category-text, .add-bookmark-text{
@@ -144,8 +157,6 @@
     text-align: center;
     width:270px;
     font-size: 15px;
-    margin-top: 30px;
-    margin-bottom: 30px;
 }
 .add-bookmark-text{
     margin-bottom: 20px;
@@ -164,11 +175,13 @@
     max-height:500px;
     padding-bottom: 20px;
 }
+
 #window::-webkit-scrollbar {
     display: none;
 }
+
 #main-window{
-    background-color: #F9F9FA;
+    background-color: #F0F0F0;
     border:solid 2px #B4B7C0;
     padding-right:2px;
     border-radius: 5px;
@@ -179,8 +192,28 @@
     border-radius: 5px;
     background-color: white;
 }
+@media only screen and (max-device-width: 1400px) {
+    .iframe {
+        width: 700px;
+        height: 400px;
+    }
+}
+@media only screen and (max-device-width: 750px) {
+    .iframe {
+        width: 500px;
+        height: 400px;
+    }
+}
 
-/*#iframe-container{
+@media only screen and (min-device-width: 1400px) {
+    .iframe {
+         width:900px;
+         height:600px;
+    }
+}
+
+
+#iframe-container{
     text-align: left;
     text-decoration: none;
     color: white;
@@ -192,26 +225,43 @@
     font-size: 25px;
     background-color: #CB3837;
     border: solid 1px #CB3837;
-    -webkit-transition-duration: .5s; /* Safari
+    -webkit-transition-duration: .5s; /* Safari*/
     transition-duration: .5s;
 }
 
-#iframe-container:hover{
+#iframe-container:hover ,#navbar button:hover{
     background-color: white;
     color: #CB3837;
     border: solid 1px #CB3837;
-}*/
+}
 
 #navbar{
     background-color: #1893C2;
     color:white;
-    height:80px;
+    height:100px;
     width: 100%;
     margin-bottom:100px;
 }
+#navbar button{
+    position: relative;
+    right: 20px;
+    bottom:10px;
+    margin: auto;
+    float:right;
+    text-decoration: none;
+    color: white;
+    padding: 8px 15px;
+    background-color: pink;
+    font-size: 20px;
+    background-color: #CB3837;
+    border: solid 1px #CB3837;
+    -webkit-transition-duration: .5s; /* Safari*/
+    transition-duration: .5s;
+}
 #navbar h1{
     position: relative;
-    top:20px;
+    top:30px;
+    margin: auto;
 }
 
 .background{
@@ -225,4 +275,37 @@
     background-position:center center;
     background-attachment:fixed;
     color:white;
+}
+
+#login-window{
+    position: relative;
+    top:100px;
+    height:200px;
+    width:500px;
+    margin:auto;
+    padding-bottom: 10px;
+    background-color: #F9F9FA;
+    border:solid 2px #B4B7C0;
+}
+.login-text{
+    height:30px;
+    text-align: center;
+    width:270px;
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+
+#create-account-window{
+    position: relative;
+    top:50px;
+    text-align: center;
+    margin:auto;
+    height:auto;
+    width:500px;
+    background-color: #F9F9FA;
+    border:solid 2px #B4B7C0;
+    padding-bottom: 20px;
+}
+.login-button{
+    width:150px;
 }

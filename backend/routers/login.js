@@ -4,10 +4,13 @@ const router = express.Router();
 var knex = require('../knex');
 
 
-router.get('/:userName/', function(req, res) {
-    var userName = req.params.userName;
+router.post('/', function(req, res) {
+    //not hashing passwords right now but will in a later commit
+    var body = req.body;
+    console.log(body)
     knex('users')
-    .where('username', userName)
+    .where('username', body.user_name)
+    .where('hashed_password', body.hashed_password)
     .then((data) => {
         res.json(data);
     }).catch((err) => {

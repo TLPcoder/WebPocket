@@ -13,44 +13,43 @@ class Home extends Component{
     constructor(props){
         super(props);
     }
-    setStyle(style){
-        this.setState({style:style});
-    }
     render(){
-        var style;
-        if(this.props.store.selectedBookmark.name){
-            style ={
-                textAlign: 'left',
-                textDecoration: 'none',
-                color: 'white',
-                padding: '8px 15px',
-                position: 'relative',
-                left:'230px',
-                top:'30px',
-                fontSize: '25px',
-                backgroundColor: '#CB3837',
-                border: 'solid 1px #CB3837',
-                webkitTransitionDuration: '.5s', /* Safari */
-                transitionDuration: '.5s'
-            };
-        }
-        return(
-            <div>
-                <div className = 'background'></div>
-                <div className = "home-container">
-                    <Navbar/>
-                    <div className = "buttons-container">
-                        <Bookmarks/>
-                    </div>
-                    <div >
-                        <iframe className = "iframe" src={this.props.store.selectedBookmark.url} frameBorder="0" width="900px" height='600px'>SORRY THIS PAGE DOES NOT ALLOW iFRAMES</iframe>
-                        <br/>
-                        <a id = 'iframe-container' style={style} target='_blank'
-                        href={this.props.store.selectedBookmark.url}>{this.props.store.selectedBookmark.name}</a>
+        if(this.props.store.selectedBookmark.url === 'http://www.seaviewinfo.com/Backgrounds/thumbs/RiverRock.jpg' || this.props.store.selectedBookmark.url === ''){
+            return(
+                <div>
+                    <div className = 'background'></div>
+                    <div className = "home-container">
+                        <Navbar/>
+                        <div className = "buttons-container">
+                            <Bookmarks/>
+                        </div>
+                        <div >
+                            <iframe className = "iframe"
+                            src={this.props.store.selectedBookmark.url} frameBorder="0" width="900px" height='600px'>SORRY THIS PAGE DOES NOT ALLOW iFRAMES</iframe>
+                            <br/>
+                        </div>
                     </div>
                 </div>
-            </div>
-        )
+            )
+        }else{
+            return(
+                <div>
+                    <div className = 'background'></div>
+                    <div className = "home-container">
+                        <Navbar/>
+                        <div className = "buttons-container">
+                            <Bookmarks/>
+                        </div>
+                        <div >
+                            <iframe className = "iframe"
+                            src={this.props.store.selectedBookmark.url} frameBorder="0">SORRY THIS PAGE DOES NOT ALLOW iFRAMES</iframe>
+                            <br/>
+                            <a id = 'iframe-container' target='_blank' href={this.props.store.selectedBookmark.url}>{this.props.store.selectedBookmark.name}</a>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
     }
 }
 // <a href="{BookingLink}&if=1&ifwidth=720" onClick={window.open(this.props.store.selectedBookmark.url, 'mywin',

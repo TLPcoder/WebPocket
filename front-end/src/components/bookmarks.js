@@ -158,7 +158,7 @@ class Bookmarks extends Component{
             return(
                 <div id="main-window">
                     <div>
-                        <input type="button" value="Back" className='button-back' onClick={()=>{
+                        <input style={{marginBottom:'3px'}} type="button" value="Back" className='button-back' onClick={()=>{
                                 this.renderCategories()
                                 this.props.actions.deleteCategory(false)
                             }
@@ -172,7 +172,7 @@ class Bookmarks extends Component{
             return(
                 <div>
                     <div id="main-window">
-                        <input type="button" value="Back" className='button-back' onClick={()=>{
+                        <input style={{marginBottom:'3px'}}type="button" value="Back" className='button-back' onClick={()=>{
                                 this.renderBookmarks()
                                 this.props.actions.deleteBookmark(false);
                             }
@@ -185,7 +185,9 @@ class Bookmarks extends Component{
             return(
                 <div>
                     <div id='add-category'>
+                        <br/>
                         <input type="text" placeholder="Add Category" id="add-category-text"/>
+                        <br/>
                         <input type="button" className='create-category-button' value="Create Category" onClick={this.createCategory}/>
                         <input type="button" value="Back" className='button-back' onClick={()=>{
                             this.props.actions.addCategory(false);
@@ -198,7 +200,9 @@ class Bookmarks extends Component{
             return(
                 <div>
                     <div id='add-bookmark'>
+                        <br/>
                         <input id='bookmarkName' className = "add-bookmark-text" placeholder='Bookmark Name' type="text"/>
+                        <br/>
                         <input type="text" id="bookmarkURL" placeholder='Bookmark URL'className = "add-bookmark-text"/>
                         <input type="button" className='add-bookmark-button' value="Create Bookmark" onClick={this.createBookmark}/>
                         <input type="button" value="Back" className='button-back' onClick={()=>{
@@ -210,9 +214,11 @@ class Bookmarks extends Component{
             )
         }else if(this.props.store.noCategories){
             return(
-                <div id="main-window">
-                    <label htmlFor="">New Category</label>
-                    <input type="text" id="add-category-text" className="add-category-text"/>
+                <div id="main-window" style={{paddingBottom:'20px'}}>
+                    <label htmlFor=""></label>
+                    <label htmlFor=""></label>
+                    <label htmlFor=""></label>
+                    <input type="text" id="add-category-text" className="add-category-text" placeholder='Category Name'/>
                     <input type="button" className='button-add' value="Create Category" onClick={this.createCategory}/>
                 </div>
             )
