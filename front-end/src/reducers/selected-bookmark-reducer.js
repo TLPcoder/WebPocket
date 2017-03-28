@@ -2,7 +2,7 @@
 import * as types from '../actions/action-types';
 
 export default (state = {
-    url:'https://source.unsplash.com/random',
+    url:'',
     name:''
     }, action) => {
     switch(action.type){

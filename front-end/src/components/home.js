@@ -14,19 +14,14 @@ class Home extends Component{
         super(props);
     }
     render(){
-        if(this.props.store.selectedBookmark.url === 'https://source.unsplash.com/random' || this.props.store.selectedBookmark.url === ''){
+        if(this.props.store.selectedBookmark.url === '' || this.props.store.selectedBookmark.name === ''){
             return(
                 <div>
                     <div className = 'background'></div>
                     <div className = "home-container">
                         <Navbar/>
-                        <div className = "buttons-container">
+                        <div className = "category-container">
                             <Bookmarks/>
-                        </div>
-                        <div >
-                            <iframe className = "iframe"
-                            src={this.props.store.selectedBookmark.url} frameBorder="0" width="900px" height='600px'>SORRY THIS PAGE DOES NOT ALLOW iFRAMES</iframe>
-                            <br/>
                         </div>
                     </div>
                 </div>

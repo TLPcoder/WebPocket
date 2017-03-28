@@ -233,6 +233,7 @@ class Bookmarks extends Component{
                     <input type="button" className='button-control' value="Categories" onClick={()=>{
                             this.props.actions.clearBookmarks();
                             this.props.actions.currentCategory(false);
+                            this.props.actions.selectBookmark({url:'', name:''})
                             this.fitchData();
                         }}/>
                     <div id = "window">{this.props.store.bookmarks}</div>
