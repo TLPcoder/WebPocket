@@ -1,47 +1,12 @@
 "use strict";
 const express = require('express');
 const router = express.Router();
-var knex = require('../knex');
+const controller = require('../controllers/create-controllers');
 
-router.post('/category', function(req,res){
-    console.log("body", req.body)
-    var body = req.body;
-    knex('category').insert({
-        category_name: body.category_name,
-        user_id: body.user_id
-    }).then((data) => {
-        console.log(data)
-        res.json(data);
-    }).catch((err)=>{
-        console.log(err);
-    });
-});
+router.post('/category', controller.createCategoty);
 
-router.post('/bookmark', function(req,res){
-    var body = req.body;
-    console.log(body);
-    knex('bookmark').insert({
-        bookmark_name: body.bookmark_name,
-        category_id: body.category_id,
-        url: body.url
-    }).then((data) => {
-        res.json(data);
-    });
-});
+router.post('/bookmark', controller.createBookmark);
 
-router.post('/user', function(req,res){
-    var body = req.body;
-    console.log(body);
-    knex('users').returning('*').insert({
-        first_name:body.first_name,
-        last_name:body.last_name,
-        username:body.username,
-        email:body.email,
-        hashed_password:body.hashed_password
-    }).then((data) =>{
-        console.log(data);
-        res.json(data);
-    });
-});
+router.post('/user', controller.createUser);
 
 module.exports = router;
