@@ -17,10 +17,9 @@ import * as Category from '../actions/category-actions';
 class Bookmarks extends Component{
     constructor(){
         super();
-        this.fitchData = this.fitchData.bind(this);
-        this.fitchData();
+        this.fetchData = this.fetchData.bind(this);
     }
-    fitchData(){
+    fetchData(){
         var user_id = sessionStorage.getItem('id');
         axios.get(`http://localhost:8000/API/category/${user_id}`)
         .then((response) => {
@@ -30,8 +29,11 @@ class Bookmarks extends Component{
             }
         });
     }
+    componentWillMount(){
+        this.fetchData();
+    }
     render(){
-        console.log("PROPS", this.props)
+        console.log("PROPS", this.props);
         if(this.props.store.category.length && !this.props.store.addCategory && !this.props.store.deleteCategory){
             return(
                 <Categories/>

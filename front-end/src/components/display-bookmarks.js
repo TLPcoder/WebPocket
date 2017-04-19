@@ -9,10 +9,10 @@ import * as Category from '../actions/category-actions';
 class DisplayBookmarks extends Component{
     constructor(){
         super();
-        this.fitchData = this.fitchData.bind(this);
+        this.fetchData = this.fetchData.bind(this);
         this.createDeleteBookmarks = this.createDeleteBookmarks.bind(this);
     }
-    fitchData(){
+    fetchData(){
         var user_id = sessionStorage.getItem('id');
         axios.get(`http://localhost:8000/API/category/${user_id}`)
         .then((response) => {
@@ -26,11 +26,10 @@ class DisplayBookmarks extends Component{
         var key = 0;
         axios.get(`http://localhost:8000/API/bookmarks/category/${categoryId}`)
         .then((response) => {
-            console.log("hello there data", response.data)
             var bookmarks = response.data.map((el) => {
                 key++;
                 return (<input key={key} type="button" className='button-delete' id ={el.category_id} onClick={()=>{
-                    axios.put(`http://localhost:8080/delete/bookmark`,{
+                    axios.put(`http://localhost:8000/delete/bookmark`,{
                         bookmark_id:el.bookmark_id
                     }).then((response)=>{
                         console.log(response.data);
@@ -55,7 +54,7 @@ class DisplayBookmarks extends Component{
                         this.props.actions.clearBookmarks();
                         this.props.actions.currentCategory(false);
                         this.props.actions.selectBookmark({url:'', name:''})
-                        this.fitchData();
+                        this.fetchData();
                     }}/>
                 <div id = "window">{this.props.store.bookmarks}</div>
             </div>

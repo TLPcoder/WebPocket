@@ -11,9 +11,9 @@ class DeleteCategory extends Component{
         super();
         this.renderCategories = this.renderCategories.bind(this);
         this.createDeleteCategories = this.createDeleteCategories.bind(this);
-        this.fitchData = this.fitchData.bind(this);
+        this.fetchData = this.fetchData.bind(this);
     }
-    fitchData(){
+    fetchData(){
         var user_id = sessionStorage.getItem('id');
         axios.get(`http://localhost:8000/API/category/${user_id}`)
         .then((response) => {
@@ -41,7 +41,7 @@ class DeleteCategory extends Component{
                     category_id:el.category_id
                 }).then((response)=>{
                     console.log(response.data);
-                    this.fitchData();
+                    this.fetchData();
                     this.createDeleteCategories();
                 })
             }}  value={el.category_name}/>)

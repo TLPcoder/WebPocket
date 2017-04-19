@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import axios from 'axios';
 import {bindActionCreators} from 'redux';
 import * as BookmarkAction from '../actions/bookmark-actions';
+import * as Category from '../actions/category-actions';
 
 class DeleteBookmarks extends Component{
     constructor(){
@@ -14,7 +15,6 @@ class DeleteBookmarks extends Component{
         var key = 0;
         axios.get(`http://localhost:8000/API/bookmarks/category/${categoryId}`)
         .then((response) => {
-            console.log("hello there data", response.data)
             var bookmarks = response.data.map((el) => {
                 key++;
                 return (<input key={key} type="button" className='button' id ={el.category_id} onClick={()=>{
@@ -51,7 +51,7 @@ function mapStateToProps(store){
 }
 
 function mapDispatchToProps(dispatch){
-    return {actions: bindActionCreators({...BookmarkAction},dispatch)}
+    return {actions: bindActionCreators({...BookmarkAction,...Category},dispatch)}
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(DeleteBookmarks)

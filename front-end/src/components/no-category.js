@@ -8,10 +8,10 @@ import * as Category from '../actions/category-actions';
 
 class NoCategory extends Component{
     constructor(){
-        super()
-        this.createCategory = this.createCategory.bind(this)
-        this.renderCategories = this.renderCategories.bind(this)
-        this.renderBookmarks = this.renderBookmarks.bind(this)
+        super();
+        this.createCategory = this.createCategory.bind(this);
+        this.renderCategories = this.renderCategories.bind(this);
+        this.renderBookmarks = this.renderBookmarks.bind(this);
     }
     createCategory(){
         var category_name = document.getElementById('add-category-text').value;

@@ -1,5 +1,4 @@
 'use strict';
-import people from './people-reducer.js';
 import login from './loginReducer.js';
 import page from './pageReducer.js';
 import bookmarks from './bookmarkReducer.js';
@@ -14,7 +13,7 @@ import noCategories from './no-categories-reducer.js';
 import {combineReducers} from 'redux';
 
 const rootReducer = combineReducers({
-  people, login, page, bookmarks, selectedBookmark, category, addBookmark, addCategory,currentCategory,deleteBookmark,deleteCategory,noCategories
+  login, page, bookmarks, selectedBookmark, category, addBookmark, addCategory,currentCategory,deleteBookmark,deleteCategory,noCategories
 });
 
 export default rootReducer;

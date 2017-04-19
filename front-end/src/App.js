@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import './App.css';
 import Login from "./components/login";
 import Home from "./components/home";
-import PeopleContainer from './components/PeopleContainer';
 import CreateAccount from './components/create-account'
 
 class App extends Component {
