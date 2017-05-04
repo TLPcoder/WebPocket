@@ -1,6 +1,5 @@
 'use strict';
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import {connect} from 'react-redux';
 import './App.css';
 import Login from "./components/login";

@@ -10,11 +10,11 @@ import Navbar from './navbar';
 class Login extends Component{
     constructor(){
         super()
-        this.checkLogin = this.checkLogin.bind(this);
+        this.checkLogin=this.checkLogin.bind(this);
     }
     checkLogin(){
-        var userName = document.getElementById('userName').value;
-        var password = document.getElementById('password').value;
+        var userName=document.getElementById('userName').value;
+        var password=document.getElementById('password').value;
         axios.post(`http://localhost:8000/login/`,{
             user_name:userName,
             hashed_password:password
@@ -34,13 +34,13 @@ class Login extends Component{
         console.log("props", this.props)
         return (
             <div>
-                <div className = 'background'></div>
+                <div className='background'></div>
                 <Navbar/>
                 <div id='login-window'>
                     <br/>
-                    <input className = 'login-text' id = "userName" type="text" placeholder='User Name'/>
+                    <input className='login-text' id="userName" type="text" placeholder='User Name'/>
                     <br/>
-                    <input className = 'login-text' id = "password" type="password" placeholder='Password'/>
+                    <input className='login-text' id="password" type="password" placeholder='Password'/>
                     <br/>
                     <button className='login-button' onClick={this.checkLogin}>Login</button>
                 </div>

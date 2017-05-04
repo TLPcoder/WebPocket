@@ -17,10 +17,10 @@ class Home extends Component{
         if(this.props.store.selectedBookmark.url === '' || this.props.store.selectedBookmark.name === ''){
             return(
                 <div>
-                    <div className = 'background'></div>
-                    <div className = "home-container">
+                    <div className='background'></div>
+                    <div className="home-container">
                         <Navbar/>
-                        <div className = "category-container">
+                        <div className="category-container">
                             <Bookmarks/>
                         </div>
                     </div>
@@ -29,18 +29,18 @@ class Home extends Component{
         }else{
             return(
                 <div>
-                    <div className = 'background'></div>
-                    <div className = "home-container">
+                    <div className='background'></div>
+                    <div className="home-container">
                         <Navbar/>
-                        <div className = "buttons-container">
+                        <div className="buttons-container">
                             <Bookmarks/>
                         </div>
                         <div >
-                            <iframe className = "iframe"
+                            <iframe className="iframe"
                             src={this.props.store.selectedBookmark.url} frameBorder="0">SORRY THIS PAGE DOES NOT ALLOW iFRAMES</iframe>
                             <br/>
-                            <a id = 'iframe-container' target='_blank' href={this.props.store.selectedBookmark.url}>{this.props.store.selectedBookmark.name}</a>
                         </div>
+                        <a id='iframe-container' target='_blank' href={this.props.store.selectedBookmark.url}>{this.props.store.selectedBookmark.name}</a>
                     </div>
                 </div>
             )

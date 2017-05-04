@@ -1,6 +1,7 @@
 "use strict";
 const express = require('express');
 const app = express();
+const knex = require('./knex');
 const PORT = process.env.PORT || 8000;
 const bodyParser = require('body-parser');
 const API = require('./routers/API');
@@ -35,8 +36,10 @@ app.use('/create', create);
 app.use('/delete', deleteRoute);
 
 app.get('/', function(req,res){
-    res.json({
-        message:"hello there"
+    knex('category').then((res) => {
+        res.json(res);
+    }).catch((err)=>{
+        console.log('this is an error', err);
     });
 });
 

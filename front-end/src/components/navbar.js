@@ -13,7 +13,7 @@ class Navbar extends Component {
     render() {
         if(this.props.store.page === 'login'){
             return(
-                <div id = "navbar">
+                <div id="navbar">
                     <h1>WeB-PoCkEt</h1>
                     <button onClick={()=>{
                         sessionStorage.clear();
@@ -25,13 +25,13 @@ class Navbar extends Component {
         }
         if(this.props.store.page === 'create-account'){
             return(
-                <div id = "navbar">
+                <div id="navbar">
                     <h1 style={{textAlign:'center'}}>WeB-PoCkEt</h1>
                 </div>
             )
         }else{
             return (
-                <div id = "navbar">
+                <div id="navbar">
                     <h1>WeB-PoCkEt</h1>
                     <button onClick={()=>{
                         sessionStorage.clear();
